@@ -6,7 +6,7 @@ import axios from 'axios';
 import './Login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -16,14 +16,14 @@ const Login = () => {
     e.preventDefault();
 
     // Проверка, что поля заполнены
-    if (!email || !password) {
+    if (!username || !password) {
       setError('Пожалуйста, заполните все поля.');
       return;
     }
 
     try {
       // Запрос на авторизацию пользователя
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
+      const response = await axios.post('http://localhost:5000/api/login', { username, password });
 
       // Проверка на успешный ответ
       if (response.status === 200) {
@@ -49,10 +49,10 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <div className="input-container">
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
