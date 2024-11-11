@@ -1,0 +1,114 @@
+/* Подключение шрифта */
+@font-face {
+  font-family: 'LtOksanaBold';
+  src: url('../resource/fonts/LtOksanaBold.ttf'); 
+}
+
+/* Основная оболочка */
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Контейнер домашней страницы */
+.container-home {
+  width: 100%;  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #f2f2f2;  
+}
+
+/* Заголовок */
+.home-title {
+  font-family: 'LtOksanaBold';
+  font-size: 30px;
+  color: #333333;
+  text-align: center;
+}
+
+/* Оболочка для домашней страницы */
+.wrap-home {
+  width: 450px;
+  background: white;
+  border-radius: 10px;
+  padding: 33px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Выравнивание текста по центру */
+.text-center {
+  text-align: center;
+}
+
+/* Стили для текста */
+.txt1 {
+  font-family: 'LtOksanaBold';
+  font-size: 13px;
+  color: #666666;
+}
+
+.txt2 {
+  font-family: 'LtOksanaBold';
+  font-size: 13px;
+  color: #333333;
+}
+
+/* Блок кнопок */
+.container-home-form-btn {
+  display: flex;
+  justify-content: center;
+  padding-top: 13px;
+}
+
+/* Обертка кнопки */
+.wrap-home-form-btn {
+  width: 100%;
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* Анимация фона кнопки "Вход" */
+.home-form-login {
+  position: absolute;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(to right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  left: -100%;
+  transition: all 0.4s;
+}
+
+/* Анимация фона кнопки "Регистрация" */
+.home-form-reg {
+  position: absolute;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(to right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  left: -100%;
+  transition: all 0.4s;
+}
+
+/* Стили кнопок */
+.home-form-btn {
+  font-family: 'LtOksanaBold';
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+/* Эффект наведения на кнопку */
+.home-form-btn:hover .home-form-login, .home-form-btn:hover .home-form-reg {
+  left: 0;
+}
