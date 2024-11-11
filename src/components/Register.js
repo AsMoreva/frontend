@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Register.css'; // Ваши стили для страницы регистрации
 
 const Register = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
 
     // Простая валидация
-    if (!email || !password || !confirmPassword) {
+    if (!username || !password || !confirmPassword) {
       setError('Пожалуйста, заполните все поля.');
       return;
     }
@@ -41,10 +41,10 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="register-form">
         <div className="input-container">
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
