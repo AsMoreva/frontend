@@ -1,49 +1,69 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  Paper,
+  Grid,
+} from '@mui/material';
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/login');
-  };
-  
-  const handleRegister = () => {
-    navigate('/register');
-  };
-
   return (
-    <div className="limiter">
-      <div className="container-home">
-        <div className="wrap-home">
-          <span className="home-title">
-            Добро пожаловать
-            <br />в приложение для анализа доходов и расходов
-          </span>
-          <div className="text-center">
-            <span className="txt1">
-              Это приложение поможет вам отслеживать ваши доходы и расходы,
-              анализировать финансовое состояние и достигать поставленных целей.
-            </span>
-            <br />
-            <span className="txt2">
-              Чтобы начать, пожалуйста, зарегистрируйтесь или войдите в свою учетную запись.
-            </span>
-          </div>
-          <div className="container-home-form-btn">
-            <button type="button" onClick={handleLogin} className="home-form-btn">
-              Вход
-            </button>
-          </div>
-          <div className="container-home-form-btn">
-            <button type="button" onClick={handleRegister} className="home-form-btn">
-              Регистрация
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container maxWidth="md">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        mt={8}
+      >
+        <Paper
+          elevation={3}
+          sx={{
+            padding: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+            borderRadius: 2,
+          }}
+        >
+          <Typography variant="h3" gutterBottom>
+            Добро пожаловать в приложение для анализа доходов и расходов
+          </Typography>
+          <Typography variant="h6" paragraph>
+            Отслеживайте свои доходы и расходы без особых усилий. Проанализируйте свою финансовую
+            ситуацию и оставайтесь на вершине своих целей.
+          </Typography>
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={() => navigate('/login')}
+              >
+                Войти
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="large"
+                onClick={() => navigate('/register')}
+              >
+                Зарегистрироваться
+              </Button>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Box>
+    </Container>
   );
 };
 
