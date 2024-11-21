@@ -1,9 +1,7 @@
-// frontend/src/components/Login.js
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import './Login.css';
+import { Container, Box, Typography, TextField, Button, Alert } from '@mui/material';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -11,69 +9,64 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Обработчик формы входа
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Проверка, что поля заполнены
-    if (!username || !password) {
-      setError('Пожалуйста, заполните все поля.');
-      return;
-    }
-
     try {
-      // Запрос на авторизацию пользователя
-      const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      const response = await axios.post(
+        'http://localhost:5000/api/login',
+        { username, password },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
 
-      // Проверка на успешный ответ
       if (response.status === 200) {
-        // Сохранение токена и перенаправление
         localStorage.setItem('token', response.data.token);
         setError('');
         navigate('/dashboard');
       }
     } catch (err) {
-      // Обработка ошибок
-      if (err.response && err.response.status === 401) {
+      if (err.response?.status === 401) {
         setError('Неверные учетные данные.');
       } else {
-        setError('Ошибка при авторизации. Попробуйте снова.');
+        setError('Произошла ошибка. Пожалуйста, попробуйте снова.');
       }
-      console.error('Ошибка авторизации:', err);
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Вход</h2>
-      <form onSubmit={handleSubmit} className="login-form">
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Username"
+    <Container maxWidth="xs">
+      <Box mt={8} textAlign="center">
+        <Typography variant="h4" gutterBottom>
+          Вход
+        </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
+        <Box component="form" onSubmit={handleSubmit} mt={2}>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Имя пользователя"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </div>
-        <div className="input-container">
-          <input
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Пароль"
             type="password"
-            placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-        {error && <div className="error-message">{error}</div>}
-        <button type="submit">Войти</button>
-      </form>
-      <div className="register-link">
-        <p>
-          Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
-        </p>
-      </div>
-    </div>
+          <Button type="submit" fullWidth variant="contained" color="primary" sx={{ mt: 2 }}>
+            Войти
+          </Button>
+        </Box>
+        <Typography mt={2}>
+          Нет аккаунта? <Link to="/register">Регистрация</Link>
+        </Typography>
+      </Box>
+    </Container>
   );
 };
 
